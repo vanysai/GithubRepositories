@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ReposList from './src/components/ReposList';
+import RepoDetails from './src/components/RepoDetails';
+import Home from './src/components/Home';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} options={{ title: 'Página Inicial' }} />
+        <Stack.Screen name="ReposList" component={ReposList} options={{ title: 'Meus Repositórios' }} />
+        <Stack.Screen name="RepoDetails" component={RepoDetails} options={{ title: 'Detalhes do Repositório' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
